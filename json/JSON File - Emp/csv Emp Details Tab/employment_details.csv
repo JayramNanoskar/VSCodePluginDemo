@@ -1,0 +1,11 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,employment detail,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Employment Detail,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Employment ,panel,profPanel,,,,,,,,,expanded
+1,Current Company Name,Input Box,profCurrComp,,string,empid,,,,,,
+2,Exp in Curr Company,Input Box,profExpCurrComp,,string,mobile,,,,,,
+5,Submit,submit,profSubmit,,,submit,,,,,http://localhost:8080/createEmployee,
+3,Total Exp,Input Box,profTotExp,,string,totExp,,,,,,

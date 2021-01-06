@@ -1,0 +1,50 @@
+{
+  "Form": {
+    "moduleName": "employee",
+    "componentName": "employment detail",
+    "gridColumn": "4",
+    "pageHeading": "Employment Detail",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Employment",
+        "controlType": "panel",
+        "controlId": "profPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "Current Company Name",
+        "controlType": "Input Box",
+        "controlId": "profCurrComp",
+        "dataType": "string",
+        "name": "empid"
+      },
+      {
+        "sequence": "2",
+        "label": "Exp in Curr Company",
+        "controlType": "Input Box",
+        "controlId": "profExpCurrComp",
+        "dataType": "string",
+        "name": "mobile"
+      },
+      {
+        "sequence": "5",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "profSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createEmployee"
+      },
+      {
+        "sequence": "3",
+        "label": "Total Exp",
+        "controlType": "Input Box",
+        "controlId": "profTotExp",
+        "dataType": "string",
+        "name": "totExp"
+      }
+    ]
+  }
+}

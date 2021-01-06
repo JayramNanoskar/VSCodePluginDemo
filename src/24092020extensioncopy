@@ -1,0 +1,366 @@
+import * as vscode from 'vscode';
+import * as fs from 'fs';
+
+export function activate(context: vscode.ExtensionContext) {
+	const options: vscode.OpenDialogOptions = {
+		canSelectMany: false,
+		openLabel: 'Open',
+		filters: {
+		   'Text files': ['csv'],
+		   'All files': ['*']
+		   }
+   };
+   const dirRootPath = "D:\\MY_ANGULAR_POC\\MY_APP\\src\\app\\";
+
+	let acceptInput = vscode.commands.registerCommand('uigenerator.acceptInput', () => {
+	   vscode.window.showOpenDialog(options).then(fileUri => {
+		if (fileUri && fileUri[0]) {
+			debugger;
+			const filePath = fileUri[0].fsPath;
+			function readFile() {
+				try {
+					vscode.window.showInformationMessage("Parsing CSV file.");
+					return fs.readFileSync(filePath, 'utf-8');
+				}
+				catch (err) {
+					vscode.window.showErrorMessage("CSV file could not be read");
+					throw err;
+				}
+			}
+			const csv = readFile();
+			const arrays =  <any[][]>(csv.split("\n").map(user => user.split(",")));
+			const len = arrays.length;
+			let componentName = "";
+			let moduleName = "";
+			let HTMLString = "";
+			let col = '1';
+			arrays.forEach((element,index) => {
+				if(index === 0){
+					moduleName = camelCase(element[1]);
+					//moduleName = element[1].replace(/\s/g, "");
+				}else if(index === 1){
+					componentName = camelCase(element[1]);
+					//componentName = element[1].replace(/\s/g, "");
+					const result = getAllFiles(dirRootPath, [], componentName);
+					createFiles(result, componentName);
+				}else if(index == 2){
+					col= element[1].replace(/\s/g, "");
+					HTMLString = createLayout(element,len,componentName);
+			   	}else if(index > 3){
+					HTMLString = generateCodeSnippet(element,index-3, HTMLString,col);
+					updateTypeScriptFile(element,index-3, HTMLString,col,componentName,moduleName);
+			   	}
+			});
+			writeToHTML(HTMLString,componentName);
+		   }
+	   });
+	});
+
+	function camelCase(str:string) { 
+		return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) { 
+			return index == 0 ? word.toLowerCase() : word.toUpperCase(); 
+		}).replace(/\s+/g, ''); 
+	} 
+
+	function createLayout(data:any[],totElem : number, componentName:string){
+		let colClass="col-sm-12";
+		let colCount = data[1].replace(/\s/g, "");
+		switch (colCount){
+			case '1':
+			  colClass="col-sm-12";
+			  break;
+			case '2':
+			  colClass="col-sm-6";
+			  break;
+			case '3': 
+				colClass="col-sm-4";
+				break;
+			default: 
+				colClass="col-sm-3";
+		  }
+		let gridSize=colCount/2;
+		let totRow = totElem/gridSize + 1;
+		let layoutSnippet = "<div class=\"container\">\n\t<div class=\"row\">\n\t\t<h2>Search Investigation</h2>"+
+    	"\n\t</div>\n\t<form [formGroup]=\""+componentName+"Form\" (ngSubmit)=\"onSubmit()\">";
+		for(let i=1;i<=totRow;i++){
+			for(let col=1;col<=colCount;col++){
+				if(col == 1){
+					layoutSnippet = layoutSnippet + "\n\t\t<div class=\"form-group row\" id=\"row"+i+"\">";
+					layoutSnippet = layoutSnippet + "\n\t\t\t<div class=\""+colClass+"\" id=\"row"+i+"_col"+col+"\">\n\n\t\t\t</div>";
+				}else{
+					layoutSnippet = layoutSnippet + "\n\t\t\t<div class=\""+colClass+"\" id=\"row"+i+"_col"+col+"\">\n\n\t\t\t</div>";
+				}
+			}
+			layoutSnippet = layoutSnippet + "\n\t\t</div>";
+		}
+		layoutSnippet = layoutSnippet + "\n\t</form>\n</div>";
+		return layoutSnippet;
+	}
+
+	async function writeToHTML(fileText : string, componentName:string){
+		let dirPath:string = dirRootPath+"app-main-content\\app-main-content.component.html";
+		let fileData = await fs.promises.readFile(dirPath);
+		let fileAsStr:string = fileData.toString("utf8");
+		fileAsStr = fileText;
+		await fs.promises.writeFile(dirPath, fileAsStr, 'utf8');
+	}
+	
+	function updateTypeScriptFile(data:any[],index : number,htmlString:string, col:string, componentName:string, moduleName:string){
+		if(data[2]){
+			var tp = data[2].replace(/\s/g, "").toLowerCase();
+			switch (tp){
+				case "dropdown":
+					setTimeout(function () {
+					console.log('Dropdown Changes for TypeScript');
+					let url:string = data[11];
+					if(url){
+						url=url.replace(/\s/g, "");
+					}
+					let cnt = "\n\t"+data[3]+"List = this.get"+data[3]+"List();\n\t"+componentName+"Form: FormGroup;\n\t"+
+					"get"+data[3]+"List() {\n\t\tthis."+moduleName+"Service.get"+data[3]+"List().subscribe("+
+					"\n\t\t\tresponse =>this.handleSuccessfulResponse"+data[3]+"(response),\n\t\t);\n\t}"+
+					"\n\thandleSuccessfulResponse"+data[3]+"(response){\n\t\tthis."+data[3]+"List=response;\n\t}"+
+					"\n\tonSubmit() {\n\t\t\n\t}\n";
+					modifyTSFile(componentName,cnt );
+					let cont = "\n\tget"+data[3]+"ist(){\n\t\t"+
+						"return this.httpClient.get('"+url+"');\n\t}";
+						updateServiceTsFile(componentName,cont,data,moduleName);
+					}, 2000);
+					break;
+				default: 
+					console.log('Default case');
+			}
+		}
+	}
+
+	async function  updateServiceTsFile(compName:string, content:string,data:any[],moduleName:string) {
+		let dirPath:string = dirRootPath+"service\\"+moduleName+".service.ts";
+		try {
+			const fileData = await fs.promises.readFile(dirPath);
+			let fileAsStr = fileData.toString("utf8");
+			let fileText:string = "";
+
+			var i = fileAsStr.lastIndexOf('}');
+			if (i !== -1) {
+				let text1 = fileAsStr.substr(0, i);
+				let text2 = fileAsStr.substr(i)
+				fileText = fileAsStr.substr(0, i) + content + fileAsStr.substr(i);
+				fileAsStr = fileAsStr.replace(text1, text1+content);
+				await fs.promises.writeFile(dirPath, fileAsStr, 'utf8');
+			}
+		} catch (err) {
+			console.log(err);
+			// handle error here
+		}
+	
+	}
+	
+
+	function addHandlerMethodSignature(compName:string,content:string){
+		let fileText:string;
+		let setting: vscode.Uri = vscode.Uri.parse("file:///" + "D:\\MY_ANGULAR_POC\\MY_APP\\src\\app\\service\\investigation.service.ts");
+		vscode.workspace.openTextDocument(setting).then((a: vscode.TextDocument) => {
+			vscode.window.showTextDocument(a, 1, false).then(e => {
+				e.edit(edit => {
+					//insert content before last closing braces '}'
+					fileText = e.document.getText();
+					
+					var i = fileText.lastIndexOf('}');
+					if (i !== -1) {
+						fileText = fileText.substr(0, i) + content + fileText.substr(i);
+						var firstLine = e.document.lineAt(0);
+						var lastLine = e.document.lineAt(e.document.lineCount - 1);
+						var textRange = new vscode.Range(0,
+							firstLine.range.start.character,
+							e.document.lineCount - 1,
+							lastLine.range.end.character);
+						edit.replace(textRange, fileText);
+					}
+					e.document.save();
+					vscode.commands.executeCommand("workbench.action.files.save");
+				});
+			});
+		}, (error: any) => {	
+			console.error(error);
+			return false;
+		});
+		vscode.commands.executeCommand("workbench.action.files.save");
+		return true;
+		
+	}
+	
+	function generateCodeSnippet(data:any[],index : number,htmlString:string, col:string){
+		debugger;
+		let divIds = getDivIdBySequence(data[0],col);	
+		let htmlControlsText = getHtmlTextByType(data);
+		htmlString = addControls(htmlString,htmlControlsText, divIds);
+		return htmlString;
+	}
+	
+	context.subscriptions.push(acceptInput);
+}
+
+function addControls(htmlString : string,htmlControlsText:string[], divIds:string[]){
+	let regexString = "^.*"+divIds[0]+".*>.*";
+	var regex = new RegExp(regexString, "gm");
+	var matchText = htmlString.match(regex);
+	var temp = "";
+	if (typeof matchText !== 'undefined' && matchText !== null) {
+		temp = htmlString.replace(regex, matchText[0]+"\n"+htmlControlsText[0]+"\n");
+	}
+
+	let regexString1 = "^.*"+divIds[1]+".*>.*";
+	var regex1 = new RegExp(regexString1, "gm");
+	var matchText1 = temp.match(regex);
+	var temp1 = "";
+	if (typeof matchText1 !== 'undefined' && matchText1 !== null) {
+		temp1 = temp.replace(regex1, matchText1[0]+"\n"+htmlControlsText[1]+"\n");
+	}
+	return temp1 == ""?htmlString:temp1;
+}
+
+function getHtmlTextByType(data:any[]){
+	let label ="<label for=\"labelFor\" class='col-form-label'>"+data[1]+"</label>";
+	let datepicker = "";
+	let htmlTexts: string[] = [];
+	if(data[1] !== ""){
+		htmlTexts.push(label);
+	}
+	if(data[2]){
+		var tp = data[2].replace(/\s/g, "").toLowerCase();
+		switch (tp){
+			case "inputbox":
+				htmlTexts.push("<input type='text' id='"+data[3]+"' name='elementname' value='"+data[7]+"' class=\"form-control inputfield\">");
+				break;
+			case "dropdown":
+				htmlTexts.push("<select placeholder=\"Placeholder\" id=\""+data[3]+"\" class=\"form-control inputfield\" name=\""+data[4]+"\">"+
+				"\n\t<option *ngFor=\"let item of "+data[3]+"List\" >"+
+				"\n\t\t{{item.viewValue}}"+
+				"\n\t</option>"+
+				"\n</select>");
+				break;
+			case "datepicker": 
+				break;
+			default: 
+				console.log('Default case');
+		}
+	}else{
+        htmlTexts.push("");
+    }
+	return htmlTexts;
+}
+
+function getDivIdBySequence(seq:string, col:string){
+	let num = Number(seq);
+	let den = Number(col)/2;
+	let rem = num%den;
+	let quo = ~~(num/den);
+	let rowNo = 0;
+	let colNo = 0;
+	let ids:string[]=[];
+	if(rem === 0){
+		rowNo = quo;
+		colNo = Number(col)- 1;
+	}else{
+		rowNo = quo + 1;
+		colNo = rem;
+	}
+	ids.push("row"+rowNo+"_col"+colNo);
+	ids.push("row"+rowNo+"_col"+(colNo+1));
+	return ids;
+}
+
+function modifyTSFileString(componentName:string, content:string){
+	let dirPath : string="D:\\MY_ANGULAR_POC\\MY_APP\\src\\app\\app-main-content\\app-main-content.component.ts";
+	const fileData = fs.promises.readFile(dirPath);
+	const fileAsStr = fileData.toString();
+	var txt = "";
+	var matchText = fileAsStr.match(/^.*class.*{.*/gm);
+		if (typeof matchText !== 'undefined' && matchText !== null) {
+			txt = fileAsStr.replace(matchText[0], matchText[0]+"\n"+content+"\n");
+			console.log(txt);
+			//await fs.promises.writeFile(dirPath, txt, 'utf8');
+		}
+	return txt;
+}
+
+
+async function modifyTSFileWithWrite(componentName:string, content:string){
+	let dirPath : string="D:\\MY_ANGULAR_POC\\MY_APP\\src\\app\\app-main-content\\app-main-content.component.ts";
+	const fileData = await fs.promises.readFile(dirPath);
+	const fileAsStr = fileData.toString("utf8");
+	var matchText = fileAsStr.match(/^.*class.*{.*/gm);
+		if (typeof matchText !== 'undefined' && matchText !== null) {
+			var txt = fileAsStr.replace(matchText[0], matchText[0]+"\n"+content+"\n");
+			console.log(txt);
+			await fs.promises.writeFile(dirPath, txt, 'utf8');
+		}
+	return true;
+}
+const getAllFiles = function (dirPath:any, arrayOfFiles:any, fileName:any) {
+
+	let fs = require("fs");
+	let path = require("path");
+	const files = fs.readdirSync(dirPath);
+
+	arrayOfFiles = arrayOfFiles || [];
+
+	files.forEach(function (file:any) {
+		if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+			arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles, fileName);
+		} else {
+			if (fileName === file) {
+				arrayOfFiles.push(path.join(__dirname, dirPath, "/", file));
+			}
+		}
+	});
+
+	return arrayOfFiles;
+};
+
+function createFiles(result:any, filename:any){
+	
+	if (typeof result !== 'undefined' && result.length == 0) { 
+
+		let fs = require("fs");
+	
+		var dirName = "D:\\MY_ANGULAR_POC\\MY_APP\\src\\app\\"+filename;
+		if (!fs.existsSync(dirName)){
+			fs.mkdirSync(dirName);
+			console.log("Folder created successfully");
+		}
+	
+		let content:string = 'import{Component,OnInit}from "@angular/core";\nimport {FormBuilder, FormGroup, FormArray, FormControl, Validators,FormsModule, ReactiveFormsModule} from "@angular/forms";\n@Component({\n\tselector:"app-'+ filename +'",\n\ttemplateUrl:"./'+ filename +'.component.html",\n\tstyleUrls:["./'+ filename +'.component.css"]\n})\nexport class '+ filename +'Component implements OnInit{\n}' 
+
+		fs.writeFile(dirName + "\\" + filename + "-component.ts", content, function (err:any) {
+			if (err) {
+				return console.error(err);
+			}
+			console.log("File created!");
+		});
+
+		fs.writeFile(dirName + "\\" + filename + "-component.specs.ts", 'TEST', function (err:any) {
+			if (err) {
+				return console.error(err);
+			}
+			console.log("File created!");
+		});
+
+		fs.writeFile(dirName + "\\" + filename + "-component.css", 'TEST', function (err:any) {
+			if (err) {
+				return console.error(err);
+			}
+			console.log("File created!");
+		});
+
+		fs.writeFile(dirName + "\\" + filename + "-component.html", 'TEST', function (err:any) {
+			if (err) {
+				return console.error(err);
+			}
+			console.log("File created!");
+		});
+	}
+}
+
+// this method is called when your extension is deactivated
+export function deactivate() {}

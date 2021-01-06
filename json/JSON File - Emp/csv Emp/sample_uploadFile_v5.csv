@@ -1,0 +1,8 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,menu employee,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Employee Menu,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Menu,panel,mPanel,,,,,,,,,none
+1,Menu List,menuList,mMenuList ,,Custom,Menu List,,,,,http://localhost:8080/ResourceTrack/getMenuList,

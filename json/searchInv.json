@@ -1,0 +1,95 @@
+{
+  "Form": {
+    "moduleName": "investigation",
+    "componentName": "search investigation",
+    "gridColumn": "4",
+    "pageHeading": "Search Investigation",
+    "formData": "http://localhost:8080/getInvestigation",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Search Investigation",
+        "controlType": "panel",
+        "controlId": "searchPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "NF ID",
+        "controlType": "Input Box",
+        "controlId": "seNfid",
+        "dataType": "number",
+        "name": "nfid"
+      },
+      {
+        "sequence": "2",
+        "label": "Out BIC",
+        "controlType": "Input Box",
+        "controlId": "seOutBIC",
+        "dataType": "string",
+        "name": "bic"
+      },
+      {
+        "sequence": "5",
+        "label": "Search",
+        "controlType": "submit",
+        "controlId": "seSearch",
+        "name": "search",
+        "serviceCall": "http://localhost:8080/createInvestigation"
+      },
+      {
+        "sequence": "3",
+        "label": "Gender",
+        "controlType": "radio",
+        "controlId": "seGenderId",
+        "name": "gender",
+        "children": [
+          {
+            "label": "Male",
+            "controlType": "radio",
+            "controlId": "seMale",
+            "parentId": "3",
+            "name": "gender"
+          },
+          {
+            "label": "female",
+            "controlType": "radio",
+            "controlId": "seFemale",
+            "parentId": "3",
+            "name": "gender"
+          }
+        ]
+      },
+      {
+        "sequence": "4",
+        "label": "Country",
+        "controlType": "checkbox",
+        "controlId": "seCountryId",
+        "name": "country",
+        "children": [
+          {
+            "label": "India",
+            "controlType": "checkbox",
+            "controlId": "seInd",
+            "parentId": "4",
+            "name": "country"
+          },
+          {
+            "label": "USA",
+            "controlType": "checkbox",
+            "controlId": "seUsa",
+            "parentId": "4",
+            "name": "country"
+          },
+          {
+            "label": "UK",
+            "controlType": "checkbox",
+            "controlId": "seUk",
+            "parentId": "4",
+            "name": "country"
+          }
+        ]
+      }
+    ]
+  }
+}

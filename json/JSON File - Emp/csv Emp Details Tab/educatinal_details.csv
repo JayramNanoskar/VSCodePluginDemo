@@ -1,0 +1,12 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,educational detail,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Educatinal Detail,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Educational,panel,eduPanel,,,,,,,,,expanded
+1,Last Degree,Input Box,edDegree,,string,degree,,,,,,
+2,Last Degree %,Input Box,edDegreePer,,string,degreePer,,,,,,
+5,Submit,submit,edSubmit,,,submit,,,,,http://localhost:8080/createEmployee,
+3,SSC %,Input Box,edSscPer,,string,sscPer,,,,,,
+4,HSC %,Input Box,edHscPer,,string,hscPer,,,,,,

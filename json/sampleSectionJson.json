@@ -1,0 +1,179 @@
+{
+  "Form": [
+    {
+      "moduleName": "investigation",
+      "componentName": "search student",
+      "gridColumn": "4",
+      "pageHeading": "Search Student",
+      "formData": "http://localhost:8080/getEmployee",
+      "controls": [
+        {
+          "label": "Search Section",
+          "controlType": "panel",
+          "controlId": "searchPanel",
+          "name": "Search Panel",
+          "style": "expanded",
+          "dataType": "custom",
+          "sequence": 0,
+          "children": [
+            {
+              "label": "Stud ID",
+              "controlType": "Input Box",
+              "controlId": "seStudId",
+              "name": "Stud ID",
+              "sequence": "1"
+            },
+            {
+              "sequence": "2",
+              "label": "Country",
+              "controlType": "Dropdown",
+              "controlId": "ceCountryId",
+              "dataType": "string",
+              "name": "countryId",
+              "serviceCall": "http://localhost:8080/ResourceTrack/getCountries"
+            },
+            {
+              "label": "Mobile",
+              "controlType": "Input Box",
+              "controlId": "seMobile",
+              "name": "Mobile",
+              "sequence": "3"
+            },
+            {
+              "sequence": "4",
+              "label": "Gender",
+              "controlType": "radio",
+              "controlId": "seGenderId",
+              "name": "gender",
+              "children": [
+                {
+                  "label": "Male",
+                  "controlType": "radio",
+                  "controlId": "seMale",
+                  "parentId": "3",
+                  "name": "gender"
+                },
+                {
+                  "label": "female",
+                  "controlType": "radio",
+                  "controlId": "seFemale",
+                  "parentId": "3",
+                  "name": "gender"
+                }
+              ]
+            },
+            {
+              "sequence": "5",
+              "label": "Country",
+              "controlType": "checkbox",
+              "controlId": "seCountryId",
+              "name": "country",
+              "children": [
+                {
+                  "label": "India",
+                  "controlType": "checkbox",
+                  "controlId": "seInd",
+                  "parentId": "4",
+                  "name": "country"
+                },
+                {
+                  "label": "USA",
+                  "controlType": "checkbox",
+                  "controlId": "seUsa",
+                  "parentId": "4",
+                  "name": "country"
+                },
+                {
+                  "label": "UK",
+                  "controlType": "checkbox",
+                  "controlId": "seUk",
+                  "parentId": "4",
+                  "name": "country"
+                }
+              ]
+            },
+            {
+              "sequence": "7",
+              "label": "Search",
+              "controlType": "submit",
+              "controlId": "seSearch",
+              "name": "search",
+              "serviceCall": "http://localhost:8080/createEmployee"
+            }
+          ]
+        }
+		,
+        {
+          "label": "Create Section",
+          "controlType": "panel",
+          "controlId": "createPanel",
+          "name": "Create Panel",
+          "style": "collapsed",
+          "dataType": "custom",
+          "sequence": 0,
+          "children": [
+            {
+              "label": "Stud ID",
+              "controlType": "Input Box",
+              "controlId": "ceStudId",
+              "name": "Stud ID",
+              "sequence": "1"
+            },
+			 {
+              "label": "Email ID",
+              "controlType": "Input Box",
+              "controlId": "ceEmailId",
+              "name": "Email ID",
+              "sequence": "2"
+            },
+			 {
+              "label": "SSN ID",
+              "controlType": "Input Box",
+              "controlId": "ceSSNId",
+              "name": "SSN ID",
+              "sequence": "3"
+            }
+          ]
+        }
+		,
+		{
+          "label": "User Section",
+          "controlType": "panel",
+          "controlId": "userPanel",
+          "name": "User Panel",
+          "style": "collapsed",
+          "dataType": "custom",
+          "sequence": 0,
+          "children": [
+            {
+              "label": "Stud Add",
+              "controlType": "Input Box",
+              "controlId": "ueStudId",
+              "name": "Stud Add",
+              "sequence": "1"
+            }
+			]
+		}
+		,
+		{
+          "label": "Another Section",
+          "controlType": "panel",
+          "controlId": "anotherPanel",
+          "name": "Another Panel",
+          "style": "collapsed",
+          "dataType": "custom",
+          "sequence": 0,
+          "children": [
+            {
+              "label": "Other Detail",
+              "controlType": "Input Box",
+              "controlId": "oeStudId",
+              "name": "Other Deatil",
+              "sequence": "1"
+            }
+			]
+		}
+      ]
+    }
+  ]
+}

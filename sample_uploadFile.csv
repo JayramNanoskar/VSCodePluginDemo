@@ -1,0 +1,22 @@
+Module Name,first module check,,,,,,,,,,
+Component Name,comp one check,,,,,,,,,,
+Grid Column,4,,,,,,,,,,
+page Heading,Search Criteria,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table
+1,NF-ID,Input Box,nfId,,number,nfId,wewe,,,,
+2,Country,Dropdown,countryId,,string,countryId,,,,,http://localhost:8080/ResourceTrack/getCountries
+3,Roles,Dropdown,roleId,,string,roleId,,,,,http://localhost:8080/ResourceTrack/getEmpRoles 
+4,Social Security number ,Input Box,ssn,,string,ssn,,,,,
+5,Reference No,Input Box,refNo,,string,ref,,,,,
+6,Out BIC,Input Box,outBIC,,string,bic,,,,,
+7,Search Table,Table,searchTable,,Custom,Investigation Table,,,,,http://localhost:8080/ResourceTrack/getEmployeesHeader| http://localhost:8080/ResourceTrack/getEmployees
+8,Menu List,menuList,menuList ,,Custom,Menu List,,,,,http://localhost:8080/ResourceTrack/getMenuList
+11,Search,button,search,,,search,,,,,
+12,Submit,submit,submit,,,submit,,,,,http://localhost:8080/createInvestigation 
+9,Gender,radio,genderId,,,gender,,,,,
+,Male,radio,male,9,,gender,,,,,
+,female,radio,female,9,,gender,,,,,
+10,Country,checkbox,countryId,,,country,,,,,
+,India,checkbox,ind,10,,country,,,,,
+,USA,checkbox,usa,10,,country,,,,,
+,UK,checkbox,uk,10,,country,,,,,

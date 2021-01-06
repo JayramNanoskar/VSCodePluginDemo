@@ -1,0 +1,27 @@
+{
+  "Form": [{
+    "moduleName": "employee",
+    "componentName": "menu employee",
+    "gridColumn": "4",
+    "pageHeading": "Employee Menu",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Menu",
+        "controlType": "panel",
+        "controlId": "mPanel",
+        "style": "none"
+      },
+      {
+        "sequence": "1",
+        "label": "Menu List",
+        "controlType": "menuList",
+        "controlId": "mMenuList",
+        "dataType": "Custom",
+        "name": "Menu List",
+        "serviceCall": "http://localhost:8080/ResourceTrack/getMenuList"
+      }
+    ]
+  }]
+}

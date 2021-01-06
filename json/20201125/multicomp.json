@@ -1,0 +1,205 @@
+{
+  "Form": [
+    {
+      "moduleName": "employee",
+      "componentName": "invTabs",
+      "gridColumn": "1",
+      "pageHeading": "Employee Details",
+      "formData": "http://localhost:8081/ResourceTrack/getMainTabList",
+      "parentContainer": "",
+      "controls": [
+        {
+          "sequence": 0,
+          "label": "tabs",
+          "controlType": "tabs",
+          "controlId": "tabs1605861680528",
+          "dataType": "Custom",
+          "name": "tabsName",
+          "serviceCall": "http://localhost:8081/ResourceTrack/getMainTabList"
+        },
+        {
+          "sequence": 0,
+          "controlType": "Tab",
+          "moduleName": "employee",
+          "componentName": "general tab",
+          "gridColumn": "4",
+          "pageHeading": "General Tab",
+          "formData": "http://localhost:8081/getEmployee",
+          "controls": [
+            {
+              "sequence": 0,
+              "label": "Search Section",
+              "controlType": "panel",
+              "controlId": "searchPanel",
+              "dataType": "Custom",
+              "name": "Search Panel",
+              "children": [
+                {
+                  "sequence": 1,
+                  "label": "Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID"
+                },
+                {
+                  "sequence": 2,
+                  "label": "Country",
+                  "controlType": "Dropdown",
+                  "controlId": "ceCountryId",
+                  "dataType": "string",
+                  "name": "countryId",
+                  "serviceCall": "http://localhost:8081/ResourceTrack/getCountries"
+                },
+                {
+                  "sequence": 3,
+                  "label": "Mobile",
+                  "controlType": "Input Box",
+                  "controlId": "seMobile",
+                  "name": "Mobile"
+                },
+                {
+                  "sequence": 4,
+                  "label": "Gender",
+                  "controlType": "radio",
+                  "controlId": "seGenderId",
+                  "name": "gender",
+                  "children": [
+                    {
+                      "sequence": 0,
+                      "label": "Male",
+                      "controlType": "radio",
+                      "controlId": "seMale",
+                      "parentId": "4",
+                      "name": "gender"
+                    },
+                    {
+                      "sequence": 0,
+                      "label": "Female",
+                      "controlType": "radio",
+                      "controlId": "seFemale",
+                      "parentId": "4",
+                      "name": "gender"
+                    }
+                  ]
+                },
+                {
+                  "sequence": 5,
+                  "label": "Country",
+                  "controlType": "checkbox",
+                  "controlId": "seCountryId",
+                  "name": "country",
+                  "children": [
+                    {
+                      "sequence": 0,
+                      "label": " India",
+                      "controlType": "checkbox",
+                      "controlId": "seInd",
+                      "name": "country"
+                    },
+                    {
+                      "sequence": 0,
+                      "label": "USA",
+                      "controlType": "checkbox",
+                      "controlId": "seUsa",
+                      "name": "country"
+                    },
+                    {
+                      "sequence": 0,
+                      "label": " UK",
+                      "controlType": "checkbox",
+                      "controlId": "seUk",
+                      "name": "country"
+                    }
+                  ]
+                },
+                {
+                  "sequence": 6,
+                  "label": "Search",
+                  "controlType": "submit",
+                  "controlId": "seSearch",
+                  "name": "search",
+                  "serviceCall": "http://localhost:8081/createEmployee"
+                }
+              ],
+              "style": "expanded"
+            }
+          ]
+        },
+        {
+          "sequence": 0,
+          "controlType": "Tab",
+          "moduleName": "employee",
+          "componentName": "Detail tab",
+          "gridColumn": "2",
+          "pageHeading": "Detail Tab",
+          "formData": "http://localhost:8081/getEmployee",
+          "controls": [
+            {
+              "sequence": 0,
+              "label": "Detail Search Section",
+              "controlType": "panel",
+              "controlId": "searchPanel",
+              "dataType": "Custom",
+              "name": "DetailSearch Panel",
+              "children": [
+                {
+                  "sequence": 1,
+                  "label": "Details Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID"
+                },
+                {
+                  "sequence": 2,
+                  "label": "Detail Search",
+                  "controlType": "submit",
+                  "controlId": "cdSearch",
+                  "name": "cesearch",
+                  "serviceCall": "http://localhost:8081/createEmployee"
+                }
+              ],
+              "style": "expanded"
+            }
+          ]
+        },
+        {
+          "sequence": 0,
+          "controlType": "Tab",
+          "moduleName": "employee",
+          "componentName": "MEMO tab",
+          "gridColumn": "2",
+          "pageHeading": "MEMO Tab",
+          "formData": "http://localhost:8081/getEmployee",
+          "controls": [
+            {
+              "sequence": 0,
+              "label": "MEMO Search Section",
+              "controlType": "panel",
+              "controlId": "MEMOsearchPanel",
+              "dataType": "Custom",
+              "name": "MEMO Search Panel",
+              "children": [
+                {
+                  "sequence": 1,
+                  "label": "MEMO Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID"
+                },
+                {
+                  "sequence": 2,
+                  "label": "MEMO Search",
+                  "controlType": "submit",
+                  "controlId": "seSearch1",
+                  "name": "search1",
+                  "serviceCall": "http://localhost:8081/createEmployee"
+                }
+              ],
+              "style": "expanded"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

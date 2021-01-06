@@ -1,0 +1,16 @@
+Module Name,investigation,,,,,,,,,,
+Component Name,search investigation,,,,,,,,,,
+Grid Column,2,,,,,,,,,,
+page Heading,Search Investigation ,,,,,,,,,,
+formData,http://localhost:8080/getInvestigation,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table
+1,NF ID,Input Box,seNfid,,number,nfid,,,,,
+2,Out BIC,Input Box,seOutBIC,,string,bic,,,,,
+5,Search,submit,seSearch,,,search,,,,,http://localhost:8080/createInvestigation 
+3,Gender,radio,seGenderId,,,gender,,,,,
+,Male,radio,seMale,3,,gender,,,,,
+,female,radio,seFemale,3,,gender,,,,,
+4,Country,checkbox,seCountryId,,,country,,,,,
+,India,checkbox,seInd,4,,country,,,,,
+,USA,checkbox,seUsa,4,,country,,,,,
+,UK,checkbox,seUk,4,,country,,,,,

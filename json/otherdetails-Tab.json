@@ -1,0 +1,20 @@
+{
+  "Form": [{
+    "moduleName": "employee",
+    "componentName": "Inv Tabs",
+    "gridColumn": "2",
+    "pageHeading": "Tabs",
+    "formData": "http://localhost:8080/getInvestigation",
+    "controls": [
+      {
+        "sequence": "1",
+        "label": "tabs",
+        "controlType": "tabs",
+        "controlId": "invTabs",
+        "dataType": "Custom",
+        "name": "tabs",
+        "serviceCall": "http://localhost:8080/getMainTabList"
+      }
+    ]
+  }]
+}

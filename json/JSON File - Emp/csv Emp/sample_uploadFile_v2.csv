@@ -1,0 +1,17 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,search employee,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Search Employee ,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Search ,panel,searchPanel,,,,,,,,,expanded
+1,Emp ID,Input Box,seEmpId,,number,empid,,,,,,
+2,Mobile,Input Box,seMobile,,string,mobile,,,,,,
+5,Search,submit,seSearch,,,search,,,,,http://localhost:8080/createEmployee,
+3,Gender,radio,seGenderId,,,gender,,,,,,
+,Male,radio,seMale,3,,gender,,,,,,
+,female,radio,seFemale,3,,gender,,,,,,
+4,Country,checkbox,seCountryId,,,country,,,,,,
+,India,checkbox,seInd,4,,country,,,,,,
+,USA,checkbox,seUsa,4,,country,,,,,,
+,UK,checkbox,seUk,4,,country,,,,,,

@@ -1,0 +1,17 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,create employee,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,create employee,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Create Employee,panel,createPanel,,,,,,,,,collapsed
+1,Emp-ID,Input Box,ceEmpId,,number,empId,0,,,,,
+2,Country,Dropdown,ceCountryId,,string,countryId,,,,,http://localhost:8080/ResourceTrack/getCountries,
+3,Roles,Dropdown,ceRoleId,,string,roleId,,,,,http://localhost:8080/ResourceTrack/getEmpRoles ,
+4,Emp Security number ,Input Box,ceEsn,,string,esn,,,,,,
+5,Emp Address,Input Box,ceEadd,,string,address,,,,,,
+6,Mobile,Input Box,ceMobile,,string,mobile,,,,,,
+9,Submit,submit,ceSubmit,,,submit,,,,,http://localhost:8080/createEmployee,
+7,Gender,radio,ceGenderId,,,gender,,,,,,
+,Male,radio,ceMale,7,,gender,,,,,,
+,female,radio,ceFemale,7,,gender,,,,,,

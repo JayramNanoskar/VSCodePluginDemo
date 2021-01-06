@@ -1,0 +1,8 @@
+[{"componentName":"CreateEmployeeComponent","filePath":"./employee/create-employee/create-employee.component","path":"createEmp"},
+{"componentName":"EmployeeDetailsComponent","filePath":"./employee/employee-details/employee-details.component","path":"empDetails"},
+{"componentName":"MenuEmployeeComponent","filePath":"./employee/menu-employee/menu-employee.component","path":"empMenu"},
+{"componentName":"SearchEmployeeComponent","filePath":"./employee/search-employee/search-employee.component","path":"searchEmp"},
+{"componentName":"PersonalDetailComponent","filePath":"./employee/personal-detail/personal-detail.component","path":"perDetails"},
+{"componentName":"EducationalDetailComponent","filePath":"./employee/educational-detail/educational-detail.component","path":"eduDetails"},
+{"componentName":"EmploymentDetailComponent","filePath":"./employee/employment-detail/employment-detail.component","path":"emplmtDetails"},
+{"componentName":"InvTabsComponent","filePath":"./employee/inv-tabs/inv-tabs.component","path":"otherDetails"}]

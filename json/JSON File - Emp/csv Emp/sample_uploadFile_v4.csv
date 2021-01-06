@@ -1,0 +1,8 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,employee details,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Employee Details,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Inbox,panel,edPanel,,,,,,,,,none
+1,Search Table,Table,edSearchTable,,Custom,Employee Table,,,,,http://localhost:8080/ResourceTrack/getEmployeesHeader| http://localhost:8080/ResourceTrack/getEmployees,

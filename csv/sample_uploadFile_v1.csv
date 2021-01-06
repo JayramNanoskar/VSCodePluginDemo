@@ -1,0 +1,16 @@
+Module Name,investigation,,,,,,,,,,
+Component Name,create investigation,,,,,,,,,,
+Grid Column,4,,,,,,,,,,
+page Heading,create investigation,,,,,,,,,,
+formData,http://localhost:8080/getInvestigation,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table
+1,NF-ID,Input Box,ciNfId,,number,nfId,,,,,
+2,Country,Dropdown,ciCountryId,,string,countryId,,,,,http://localhost:8080/ResourceTrack/getCountries
+3,Roles,Dropdown,ciRoleId,,string,roleId,,,,,http://localhost:8080/ResourceTrack/getEmpRoles 
+4,Social Security number ,Input Box,ciSsn,,string,ssn,,,,,
+5,Reference No,Input Box,ciRefNo,,string,ref,,,,,
+6,Out BIC,Input Box,ciOutBIC,,string,bic,,,,,
+9,Submit,submit,ciSubmit,,,submit,,,,,http://localhost:8080/createInvestigation 
+7,Gender,radio,ciGenderId,,,gender,,,,,
+,Male,radio,ciMale,7,,gender,,,,,
+,female,radio,ciFemale,7,,gender,,,,,

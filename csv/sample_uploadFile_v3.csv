@@ -1,0 +1,8 @@
+Module Name,investigation,,,,,,,,,,
+Component Name,User Search,,,,,,,,,,
+Grid Column,4,,,,,,,,,,
+page Heading,User Search,,,,,,,,,,
+formData,http://localhost:8080/getInvestigation,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table
+1,Roles,Dropdown,usRoleId,,string,roleId,,,,,http://localhost:8080/ResourceTrack/getEmpRoles 
+2,Search Table,Table,usSearchTable,,Custom,Investigation Table,,,,,http://localhost:8080/ResourceTrack/getEmployeesHeader| http://localhost:8080/ResourceTrack/getEmployees

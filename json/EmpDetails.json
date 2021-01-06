@@ -1,0 +1,27 @@
+{
+  "Form": [{
+    "moduleName": "employee",
+    "componentName": "employee details",
+    "gridColumn": "4",
+    "pageHeading": "Employee Details",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Inbox",
+        "controlType": "panel",
+        "controlId": "edPanel",
+        "style": "none"
+      },
+      {
+        "sequence": "1",
+        "label": "Search Table",
+        "controlType": "Table",
+        "controlId": "edSearchTable",
+        "dataType": "Custom",
+        "name": "Employee Table",
+        "serviceCall": "http://localhost:8080/ResourceTrack/getEmployeesHeader| http://localhost:8080/ResourceTrack/getEmployees"
+      }
+    ]
+  }]
+}

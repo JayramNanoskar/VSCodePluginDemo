@@ -1,0 +1,100 @@
+{
+  "Form": {
+    "moduleName": "employee",
+    "componentName": "new create employee",
+    "gridColumn": "4",
+    "pageHeading": "create employee",
+    "formData": "http://localhost:8081/getEmployee",			
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Create Employee",
+        "controlType": "panel",
+        "controlId": "createPanel",
+        "style": "collapsed"
+      },
+      {
+        "sequence": "1",
+        "label": "Emp-ID",
+        "controlType": "Input Box",
+        "controlId": "ceEmpId",
+        "dataType": "number",
+        "name": "empId",
+        "defaultValue": "0"
+      },
+      {
+        "sequence": "2",
+        "label": "Country",
+        "controlType": "Dropdown",
+        "controlId": "ceCountryId",
+        "dataType": "string",
+        "name": "countryId",
+        "serviceCall": "http://localhost:8081/ResourceTrack/getCountries"
+      },
+      {
+        "sequence": "3",
+        "label": "Roles",
+        "controlType": "Dropdown",
+        "controlId": "ceRoleId",
+        "dataType": "string",
+        "name": "roleId",
+        "serviceCall": "http://localhost:8081/ResourceTrack/getEmpRoles"
+      },
+      {
+        "sequence": "4",
+        "label": "Emp Security number",
+        "controlType": "Input Box",
+        "controlId": "ceEsn",
+        "dataType": "string",
+        "name": "esn"
+      },
+      {
+        "sequence": "5",
+        "label": "Emp Address",
+        "controlType": "Input Box",
+        "controlId": "ceEadd",
+        "dataType": "string",
+        "name": "address"
+      },
+      {
+        "sequence": "6",
+        "label": "Mobile",
+        "controlType": "Input Box",
+        "controlId": "ceMobile",
+        "dataType": "string",
+        "name": "mobile"
+      },
+      {
+        "sequence": "9",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "ceSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8081/createEmployee"
+      },
+      {
+        "sequence": "7",
+        "label": "Gender",
+        "controlType": "radio",
+        "controlId": "ceGenderId",
+        "name": "gender",
+        "children": [
+          {
+            "label": "Male",
+            "controlType": "radio",
+            "controlId": "ceMale",
+            "parentId": "7",
+            "name": "gender"
+          },
+          {
+            "label": "female",
+            "controlType": "radio",
+            "controlId": "ceFemale",
+            "parentId": "7",
+            "name": "gender"
+          }
+        ]
+      }
+    ]
+  }
+}

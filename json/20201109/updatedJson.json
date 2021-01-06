@@ -1,0 +1,232 @@
+{
+  "Form": [
+    {
+      "moduleName": "employee",
+      "componentName": "invTabs",
+      "gridColumn": "1",
+      "pageHeading": "Employee Details",
+      "formData": "http://localhost:8080/getEmployee",
+	  "parentContainer": "",
+      "controls": [
+        {
+          "sequence": "1",
+          "label": "tabs",
+          "controlType": "tabs",
+          "controlId": "invTabs",
+          "dataType": "Custom",
+          "name": "tabs",
+          "serviceCall": "http://localhost:8080/ResourceTrack/getMainTabList"
+        },
+        {
+          "moduleName": "General Tab",
+          "componentName": "general tab",
+          "gridColumn": "4",
+          "pageHeading": "General Tab",
+          "controlType": "Tab",
+          "formData": "http://localhost:8080/getEmployee",
+          "controls": [
+            {
+              "label": "Search Section",
+              "controlType": "panel",
+              "controlId": "searchPanel",
+              "name": "Search Panel",
+              "style": "expanded",
+              "dataType": "custom",
+              "sequence": 0,
+              "children": [
+                {
+                  "label": "Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID",
+                  "sequence": "1"
+                },
+                {
+                  "sequence": "2",
+                  "label": "Country",
+                  "controlType": "Dropdown",
+                  "controlId": "ceCountryId",
+                  "dataType": "string",
+                  "name": "countryId",
+                  "serviceCall": "http://localhost:8080/ResourceTrack/getCountries"
+                },
+                {
+                  "label": "Mobile",
+                  "controlType": "Input Box",
+                  "controlId": "seMobile",
+                  "name": "Mobile",
+                  "sequence": "3"
+                },
+                {
+                  "sequence": "4",
+                  "label": "Gender",
+                  "controlType": "radio",
+                  "controlId": "seGenderId",
+                  "name": "gender",
+                  "children": [
+                    {
+                      "label": "Male",
+                      "controlType": "radio",
+                      "controlId": "seMale",
+                      "parentId": "3",
+                      "name": "gender"
+                    },
+                    {
+                      "label": "female",
+                      "controlType": "radio",
+                      "controlId": "seFemale",
+                      "parentId": "3",
+                      "name": "gender"
+                    }
+                  ]
+                },
+                {
+                  "sequence": "5",
+                  "label": "Country",
+                  "controlType": "checkbox",
+                  "controlId": "seCountryId",
+                  "name": "country",
+                  "children": [
+                    {
+                      "label": "India",
+                      "controlType": "checkbox",
+                      "controlId": "seInd",
+                      "parentId": "4",
+                      "name": "country"
+                    },
+                    {
+                      "label": "USA",
+                      "controlType": "checkbox",
+                      "controlId": "seUsa",
+                      "parentId": "4",
+                      "name": "country"
+                    },
+                    {
+                      "label": "UK",
+                      "controlType": "checkbox",
+                      "controlId": "seUk",
+                      "parentId": "4",
+                      "name": "country"
+                    }
+                  ]
+                },
+                {
+                  "sequence": "7",
+                  "label": "Search",
+                  "controlType": "submit",
+                  "controlId": "seSearch",
+                  "name": "search",
+                  "serviceCall": "http://localhost:8080/createEmployee"
+                }
+              ]
+            },
+            {
+              "label": "Create Section",
+              "controlType": "panel",
+              "controlId": "createPanel",
+              "name": "Create Panel",
+              "style": "collapsed",
+              "dataType": "custom",
+              "sequence": 0,
+              "children": [
+                {
+                  "label": "Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "ceEmpId",
+                  "name": "Emp ID",
+                  "sequence": "1"
+                },
+                {
+                  "label": "Email ID",
+                  "controlType": "Input Box",
+                  "controlId": "ceEmailId",
+                  "name": "Email ID",
+                  "sequence": "2"
+                },
+                {
+                  "label": "SSN ID",
+                  "controlType": "Input Box",
+                  "controlId": "ceSSNId",
+                  "name": "SSN ID",
+                  "sequence": "3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "moduleName": "employee",
+          "componentName": "Detail tab",
+          "gridColumn": "2",
+          "pageHeading": "Detail Tab",
+          "controlType": "Tab",
+          "formData": "http://localhost:8080/getEmployee",
+          "controls": [
+            {
+              "label": "Detail Search Section",
+              "controlType": "panel",
+              "controlId": "searchPanel",
+              "name": "DetailSearch Panel",
+              "style": "expanded",
+              "dataType": "custom",
+              "sequence": 0,
+              "children": [
+                {
+                  "label": "Details Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID",
+                  "sequence": "1"
+                },
+                {
+                  "sequence": "7",
+                  "label": "Detail Search",
+                  "controlType": "submit",
+                  "controlId": "cdSearch",
+                  "name": "cesearch",
+                  "serviceCall": "http://localhost:8080/createEmployee"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "moduleName": "employee",
+          "componentName": "MEMO tab",
+          "gridColumn": "2",
+          "pageHeading": "MEMO Tab",
+          "controlType": "Tab",
+          "formData": "http://localhost:8080/getEmployee",
+          "controls": [
+            {
+              "label": "MEMO Search Section",
+              "controlType": "panel",
+              "controlId": "MEMOsearchPanel",
+              "name": "MEMO Search Panel",
+              "style": "expanded",
+              "dataType": "custom",
+              "sequence": 0,
+              "children": [
+                {
+                  "label": "MEMO Emp ID",
+                  "controlType": "Input Box",
+                  "controlId": "seEmpId",
+                  "name": "Emp ID",
+                  "sequence": "1"
+                },
+                {
+                  "sequence": "7",
+                  "label": "MEMO Search",
+                  "controlType": "submit",
+                  "controlId": "seSearch1",
+                  "name": "search1",
+                  "serviceCall": "http://localhost:8080/createEmployee"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

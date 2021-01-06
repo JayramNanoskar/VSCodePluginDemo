@@ -1,0 +1,27 @@
+{
+  "Form": {
+    "moduleName": "investigation",
+    "componentName": "user inbox",
+    "gridColumn": "4",
+    "pageHeading": "user inbox",
+    "formData": "http://localhost:8080/getInvestigation",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Inbox",
+        "controlType": "panel",
+        "controlId": "uiPanel",
+        "style": "none"
+      },
+      {
+        "sequence": "1",
+        "label": "Search Table",
+        "controlType": "Table",
+        "controlId": "uSearchTable",
+        "dataType": "Custom",
+        "name": "Investigation Table",
+        "serviceCall": "http://localhost:8080/ResourceTrack/getEmployeesHeader| http://localhost:8080/ResourceTrack/getEmployees"
+      }
+    ]
+  }
+}

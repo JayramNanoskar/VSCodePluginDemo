@@ -1,0 +1,58 @@
+{
+  "Form": {
+    "moduleName": "employee",
+    "componentName": "educational detail",
+    "gridColumn": "4",
+    "pageHeading": "Educatinal Detail",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Educational",
+        "controlType": "panel",
+        "controlId": "eduPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "Last Degree",
+        "controlType": "Input Box",
+        "controlId": "edDegree",
+        "dataType": "string",
+        "name": "degree"
+      },
+      {
+        "sequence": "2",
+        "label": "Last Degree %",
+        "controlType": "Input Box",
+        "controlId": "edDegreePer",
+        "dataType": "string",
+        "name": "degreePer"
+      },
+      {
+        "sequence": "5",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "edSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createEmployee"
+      },
+      {
+        "sequence": "3",
+        "label": "SSC %",
+        "controlType": "Input Box",
+        "controlId": "edSscPer",
+        "dataType": "string",
+        "name": "sscPer"
+      },
+      {
+        "sequence": "4",
+        "label": "HSC %",
+        "controlType": "Input Box",
+        "controlId": "edHscPer",
+        "dataType": "string",
+        "name": "hscPer"
+      }
+    ]
+  }
+}

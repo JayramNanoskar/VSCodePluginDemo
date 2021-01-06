@@ -1,0 +1,200 @@
+{
+  "Form": [{
+    "moduleName": "employee",
+    "componentName": "personal detail",
+    "gridColumn": "4",
+    "pageHeading": "Personal Detail",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Personal",
+        "controlType": "panel",
+        "controlId": "perPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "PAN",
+        "controlType": "Input Box",
+        "controlId": "perEmpId",
+        "dataType": "string",
+        "name": "panid"
+      },
+      {
+        "sequence": "2",
+        "label": "Mobile",
+        "controlType": "Input Box",
+        "controlId": "perMobile",
+        "dataType": "string",
+        "name": "mobile"
+      },
+      {
+        "sequence": "5",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "perSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createEmployee"
+      },
+      {
+        "sequence": "3",
+        "label": "Gender",
+        "controlType": "radio",
+        "controlId": "perGenderId",
+        "name": "gender",
+        "children": [
+          {
+            "label": "Male",
+            "controlType": "radio",
+            "controlId": "perMale",
+            "parentId": "3",
+            "name": "gender"
+          },
+          {
+            "label": "female",
+            "controlType": "radio",
+            "controlId": "perFemale",
+            "parentId": "3",
+            "name": "gender"
+          }
+        ]
+      },
+      {
+        "sequence": "4",
+        "label": "Country",
+        "controlType": "checkbox",
+        "controlId": "perCountryId",
+        "name": "country",
+        "children": [
+          {
+            "label": "India",
+            "controlType": "checkbox",
+            "controlId": "perIndia",
+            "parentId": "4",
+            "name": "country"
+          },
+          {
+            "label": "USA",
+            "controlType": "checkbox",
+            "controlId": "perUSA",
+            "parentId": "4",
+            "name": "country"
+          },
+          {
+            "label": "UK",
+            "controlType": "checkbox",
+            "controlId": "perUk",
+            "parentId": "4",
+            "name": "country"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "moduleName": "employee",
+    "componentName": "educational detail",
+    "gridColumn": "4",
+    "pageHeading": "Educatinal Detail",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Educational",
+        "controlType": "panel",
+        "controlId": "eduPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "Last Degree",
+        "controlType": "Input Box",
+        "controlId": "edDegree",
+        "dataType": "string",
+        "name": "degree"
+      },
+      {
+        "sequence": "2",
+        "label": "Last Degree %",
+        "controlType": "Input Box",
+        "controlId": "edDegreePer",
+        "dataType": "string",
+        "name": "degreePer"
+      },
+      {
+        "sequence": "5",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "edSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createEmployee"
+      },
+      {
+        "sequence": "3",
+        "label": "SSC %",
+        "controlType": "Input Box",
+        "controlId": "edSscPer",
+        "dataType": "string",
+        "name": "sscPer"
+      },
+      {
+        "sequence": "4",
+        "label": "HSC %",
+        "controlType": "Input Box",
+        "controlId": "edHscPer",
+        "dataType": "string",
+        "name": "hscPer"
+      }
+    ]
+  },
+  {
+    "moduleName": "employee",
+    "componentName": "employment detail",
+    "gridColumn": "4",
+    "pageHeading": "Employment Detail",
+    "formData": "http://localhost:8080/getEmployee",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Employment",
+        "controlType": "panel",
+        "controlId": "profPanel",
+        "style": "expanded"
+      },
+      {
+        "sequence": "1",
+        "label": "Current Company Name",
+        "controlType": "Input Box",
+        "controlId": "profCurrComp",
+        "dataType": "string",
+        "name": "empid"
+      },
+      {
+        "sequence": "2",
+        "label": "Exp in Curr Company",
+        "controlType": "Input Box",
+        "controlId": "profExpCurrComp",
+        "dataType": "string",
+        "name": "mobile"
+      },
+      {
+        "sequence": "5",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "profSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createEmployee"
+      },
+      {
+        "sequence": "3",
+        "label": "Total Exp",
+        "controlType": "Input Box",
+        "controlId": "profTotExp",
+        "dataType": "string",
+        "name": "totExp"
+      }
+    ]
+  }
+  ]
+}

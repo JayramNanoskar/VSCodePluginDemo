@@ -1,0 +1,100 @@
+{
+  "Form": {
+    "moduleName": "investigation",
+    "componentName": "create investigation",
+    "gridColumn": "4",
+    "pageHeading": "create investigation",
+    "formData": "http://localhost:8080/getInvestigation",
+    "controls": [
+      {
+        "sequence": "0",
+        "label": "Create Investigation",
+        "controlType": "panel",
+        "controlId": "createPanel",
+        "style": "collapsed"
+      },
+      {
+        "sequence": "1",
+        "label": "NF-ID",
+        "controlType": "Input Box",
+        "controlId": "ciNfId",
+        "dataType": "number",
+        "name": "nfId",
+        "defaultValue": "0"
+      },
+      {
+        "sequence": "2",
+        "label": "Country",
+        "controlType": "Dropdown",
+        "controlId": "ciCountryId",
+        "dataType": "string",
+        "name": "countryId",
+        "serviceCall": "http://localhost:8080/ResourceTrack/getCountries"
+      },
+      {
+        "sequence": "3",
+        "label": "Roles",
+        "controlType": "Dropdown",
+        "controlId": "ciRoleId",
+        "dataType": "string",
+        "name": "roleId",
+        "serviceCall": "http://localhost:8080/ResourceTrack/getEmpRoles"
+      },
+      {
+        "sequence": "4",
+        "label": "Social Security number",
+        "controlType": "Input Box",
+        "controlId": "ciSsn",
+        "dataType": "string",
+        "name": "ssn"
+      },
+      {
+        "sequence": "5",
+        "label": "Reference No",
+        "controlType": "Input Box",
+        "controlId": "ciRefNo",
+        "dataType": "string",
+        "name": "ref"
+      },
+      {
+        "sequence": "6",
+        "label": "Out BIC",
+        "controlType": "Input Box",
+        "controlId": "ciOutBIC",
+        "dataType": "string",
+        "name": "bic"
+      },
+      {
+        "sequence": "9",
+        "label": "Submit",
+        "controlType": "submit",
+        "controlId": "ciSubmit",
+        "name": "submit",
+        "serviceCall": "http://localhost:8080/createInvestigation"
+      },
+      {
+        "sequence": "7",
+        "label": "Gender",
+        "controlType": "radio",
+        "controlId": "ciGenderId",
+        "name": "gender",
+        "children": [
+          {
+            "label": "Male",
+            "controlType": "radio",
+            "controlId": "ciMale",
+            "parentId": "7",
+            "name": "gender"
+          },
+          {
+            "label": "female",
+            "controlType": "radio",
+            "controlId": "ciFemale",
+            "parentId": "7",
+            "name": "gender"
+          }
+        ]
+      }
+    ]
+  }
+}

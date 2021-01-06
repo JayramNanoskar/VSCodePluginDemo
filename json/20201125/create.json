@@ -1,0 +1,47 @@
+{
+  "Form": [
+    {
+      "moduleName": "employee",
+      "componentName": "create employee",
+      "gridColumn": "4",
+      "pageHeading": "Create Employee",
+      "formData": "http://localhost:8081/getEmployee",
+      "parentContainer": "",
+      "controls": [
+        {
+          "sequence": 0,
+          "label": "Create Section",
+          "controlType": "panel",
+          "controlId": "createPanel",
+          "dataType": "Custom",
+          "name": "Create Panel",
+          "children": [
+            {
+              "sequence": 1,
+              "label": "Email ID",
+              "controlType": "Input Box",
+              "controlId": "ceEmailId",
+              "name": "Email ID"
+            },
+            {
+              "sequence": 2,
+              "label": "PAN",
+              "controlType": "Input Box",
+              "controlId": "cePan",
+              "name": "PAN"
+            },
+            {
+              "sequence": 3,
+              "label": "Create Employee",
+              "controlType": "submit",
+              "controlId": "ceCreate",
+              "name": "create employee",
+              "serviceCall": "http://localhost:8081/createEmployee"
+            }
+          ],
+          "style": "expanded"
+        }
+      ]
+    }
+  ]
+}

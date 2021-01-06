@@ -1,0 +1,17 @@
+Module Name,employee,,,,,,,,,,,
+Component Name,personal detail,,,,,,,,,,,
+Grid Column,4,,,,,,,,,,,
+page Heading,Personal Detail,,,,,,,,,,,
+formData,http://localhost:8080/getEmployee,,,,,,,,,,,
+Sequence,Label,Control Type,Control Id,Parent Id,Data Type,Name,Default Value,Event Handler signature,Validator,Place Holder,Service Call for Dropdown/Checkbox/Table,Style
+0,Personal,panel,perPanel,,,,,,,,,expanded
+1,PAN,Input Box,perEmpId,,string,panid,,,,,,
+2,Mobile,Input Box,perMobile,,string,mobile,,,,,,
+5,Submit,submit,perSubmit,,,submit,,,,,http://localhost:8080/createEmployee,
+3,Gender,radio,perGenderId,,,gender,,,,,,
+,Male,radio,perMale,3,,gender,,,,,,
+,female,radio,perFemale,3,,gender,,,,,,
+4,Country,checkbox,perCountryId,,,country,,,,,,
+,India,checkbox,perIndia,4,,country,,,,,,
+,USA,checkbox,perUSA,4,,country,,,,,,
+,UK,checkbox,perUk,4,,country,,,,,,
