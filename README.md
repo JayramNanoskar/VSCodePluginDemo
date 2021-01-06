@@ -1,6 +1,6 @@
 # UI Generator README
-
-Read controls from CSV and genetrate angular code . 
+This application shows creating vscode extension for angular code generation using input Json files.
+Read controls from JSON/CSV and generate angular code . 
 
 ## Features
 
